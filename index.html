@@ -13,9 +13,8 @@
   --panel-hi:#28221b;
   --paper:#f2ede4;
   --paper-dim:#c9c2b4;
-  --pink:#ff3d7f;
+  --green:#39ff14;
   --orange:#ff6b1a;
-  --gold:#c9a227;
   --line:rgba(242,237,228,0.12);
   --radius:14px;
 }
@@ -26,7 +25,7 @@
 html,body{ margin:0; padding:0; }
 body{
   background:
-    radial-gradient(1200px 500px at 50% -10%, rgba(255,61,127,0.10), transparent 60%),
+    radial-gradient(1200px 500px at 50% -10%, rgba(57,255,20,0.10), transparent 60%),
     radial-gradient(900px 500px at 100% 0%, rgba(255,107,26,0.08), transparent 55%),
     var(--ink);
   color:var(--paper);
@@ -42,20 +41,20 @@ body{
   font-size:12px;
   letter-spacing:0.18em;
   text-transform:uppercase;
-  color:var(--pink);
+  color:var(--green);
   display:flex; align-items:center; gap:8px;
   margin-bottom:6px;
 }
 .dot{
   width:7px; height:7px; border-radius:50%;
-  background:var(--pink);
-  box-shadow:0 0 0 0 rgba(255,61,127,0.6);
+  background:var(--green);
+  box-shadow:0 0 0 0 rgba(57,255,20,0.6);
   animation:pulse 1.8s infinite;
 }
 @keyframes pulse{
-  0%{ box-shadow:0 0 0 0 rgba(255,61,127,0.55); }
-  70%{ box-shadow:0 0 0 9px rgba(255,61,127,0); }
-  100%{ box-shadow:0 0 0 0 rgba(255,61,127,0); }
+  0%{ box-shadow:0 0 0 0 rgba(57,255,20,0.55); }
+  70%{ box-shadow:0 0 0 9px rgba(57,255,20,0); }
+  100%{ box-shadow:0 0 0 0 rgba(57,255,20,0); }
 }
 h1{
   font-family:'Anton', sans-serif;
@@ -103,7 +102,7 @@ h1 span{ color:var(--orange); -webkit-text-fill-color:var(--orange); }
   position:absolute;
   inset:-40% -20% auto auto;
   width:220px; height:220px;
-  background:radial-gradient(circle, rgba(255,107,26,0.30), rgba(255,61,127,0.14) 45%, transparent 70%);
+  background:radial-gradient(circle, rgba(255,107,26,0.30), rgba(57,255,20,0.16) 45%, transparent 70%);
   filter:blur(6px);
   animation:drift 6s ease-in-out infinite;
   pointer-events:none;
@@ -126,7 +125,7 @@ h1 span{ color:var(--orange); -webkit-text-fill-color:var(--orange); }
   position:relative;
   z-index:1;
 }
-.rank.top1{ background:var(--gold); box-shadow:0 0 0 3px rgba(201,162,39,0.18); }
+.rank.top1{ background:var(--green); box-shadow:0 0 0 3px rgba(57,255,20,0.22); }
 .rank.top2{ background:#d8d2c4; }
 .rank.top3{ background:#a9967a; }
 .rank.top1::after, .rank.top2::after, .rank.top3::after{
@@ -161,7 +160,7 @@ button.vote{
   font-weight:700; font-size:12.5px; letter-spacing:0.04em;
   text-transform:uppercase;
   color:var(--ink);
-  background:linear-gradient(135deg, var(--pink), var(--orange));
+  background:linear-gradient(135deg, var(--green), var(--orange));
   border:none; border-radius:9px;
   padding:9px 16px;
   cursor:pointer;
@@ -223,30 +222,13 @@ button.vote:focus-visible{ outline:2px solid var(--paper); outline-offset:2px; }
   text-transform:uppercase; letter-spacing:0.02em; margin:0 0 12px;
   color:var(--orange);
 }
-.panel label{
-  display:block; font-size:11px; color:var(--paper-dim);
-  text-transform:uppercase; letter-spacing:0.06em; margin:10px 0 4px;
-}
-.panel input{
-  width:100%; background:var(--ink); border:1px solid var(--line);
-  border-radius:8px; padding:9px 10px; color:var(--paper);
-  font-family:'Work Sans', sans-serif; font-size:14px;
-}
-.panel input:focus{ outline:1px solid var(--gold); }
 .row-btns{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
 .panel button{
   font-family:'Work Sans', sans-serif; font-weight:600; font-size:13px;
   border-radius:8px; padding:9px 14px; cursor:pointer; border:1px solid var(--line);
   background:transparent; color:var(--paper);
 }
-.panel button.primary{ background:var(--gold); color:var(--ink); border-color:var(--gold); }
-.panel button.danger{ color:var(--pink); border-color:rgba(255,61,127,0.4); }
-.roster-item{
-  display:flex; justify-content:space-between; align-items:center;
-  padding:8px 0; border-bottom:1px solid var(--line); font-size:13px;
-}
-.roster-item:last-child{ border-bottom:none; }
-.roster-item button{ padding:4px 10px; font-size:11px; }
+.panel button.danger{ color:var(--orange); border-color:rgba(255,107,26,0.4); }
 .status{ font-size:12px; color:var(--paper-dim); margin-top:10px; min-height:16px; }
 </style>
 </head>
@@ -269,18 +251,7 @@ button.vote:focus-visible{ outline:2px solid var(--paper); outline-offset:2px; }
   <button class="crew-link" id="crewToggle">event crew</button>
   <div class="panel" id="panel">
     <h2>Crew Panel</h2>
-
-    <label for="aName">Add artist — name</label>
-    <input id="aName" type="text" placeholder="e.g. Miles">
-    <label for="aStyle">Style / medium (optional)</label>
-    <input id="aStyle" type="text" placeholder="e.g. Spray + stencil">
-    <div class="row-btns">
-      <button class="primary" id="addArtist">Add artist</button>
-    </div>
-
-    <label style="margin-top:18px;">Current roster</label>
-    <div id="roster"></div>
-
+    <div class="status">Artists are set in the code (see ARTISTS list near the top of the script). Use this panel just to reset the tally before doors open.</div>
     <div class="row-btns">
       <button class="danger" id="resetVotes">Reset all votes</button>
     </div>
@@ -291,8 +262,18 @@ button.vote:focus-visible{ outline:2px solid var(--paper); outline-offset:2px; }
 
 <script>
 (function(){
+  // ---- EDIT YOUR ARTIST ROSTER HERE ----
+  // id: keep short and unique, never change it once voting has started
+  // (it's the key votes are tracked under). name + style show on the card.
+  const ARTISTS = [
+    { id: 'a1', name: 'Mark Juber',  style: '#' },
+    { id: 'a2', name: 'Pauly Knipfer',  style: 'Paulychromatic Paint Show' },
+    { id: 'a3', name: 'Artist Three', style: '#' },
+    { id: 'a4', name: 'Artist Four', style: '#' }
+  ];
+  // ---------------------------------------
+
   const board = document.getElementById('board');
-  const roster = document.getElementById('roster');
   const statusEl = document.getElementById('status');
   const panel = document.getElementById('panel');
   const crewToggle = document.getElementById('crewToggle');
@@ -304,18 +285,6 @@ button.vote:focus-visible{ outline:2px solid var(--paper); outline-offset:2px; }
     if(msg){ setTimeout(() => { if(statusEl.textContent===msg) statusEl.textContent=''; }, 2500); }
   }
 
-  function uid(){ return 'a' + Math.random().toString(36).slice(2,9); }
-
-  async function getArtists(){
-    try{
-      const r = await window.storage.get('artists', true);
-      return r ? JSON.parse(r.value) : [];
-    }catch(e){ return []; }
-  }
-  async function setArtists(list){
-    try{ await window.storage.set('artists', JSON.stringify(list), true); }
-    catch(e){ setStatus('Could not save roster.'); }
-  }
   async function getVotes(){
     try{
       const r = await window.storage.get('votes', true);
@@ -337,15 +306,14 @@ button.vote:focus-visible{ outline:2px solid var(--paper); outline-offset:2px; }
   }
 
   async function render(){
-    const [artists, votes] = await Promise.all([getArtists(), getVotes()]);
+    const votes = await getVotes();
 
-    if(!artists.length){
-      board.innerHTML = '<div class="empty">No artists on the board yet — add them from the crew panel.</div>';
-      renderRoster([]);
+    if(!ARTISTS.length){
+      board.innerHTML = '<div class="empty">No artists set — add them to the ARTISTS list in the code.</div>';
       return;
     }
 
-    const withVotes = artists.map(a => ({ ...a, count: votes[a.id] || 0 }));
+    const withVotes = ARTISTS.map(a => ({ ...a, count: votes[a.id] || 0 }));
     withVotes.sort((a,b) => b.count - a.count);
 
     const cards = await Promise.all(withVotes.map(async (a, idx) => {
@@ -370,20 +338,6 @@ button.vote:focus-visible{ outline:2px solid var(--paper); outline-offset:2px; }
     board.querySelectorAll('button.vote:not(:disabled)').forEach(btn=>{
       btn.addEventListener('click', () => castVote(btn.dataset.id));
     });
-
-    renderRoster(artists);
-  }
-
-  function renderRoster(artists){
-    if(!artists.length){ roster.innerHTML = '<div class="status">No artists yet.</div>'; return; }
-    roster.innerHTML = artists.map(a => `
-      <div class="roster-item">
-        <span>${escapeHtml(a.name)}${a.style ? ' — '+escapeHtml(a.style) : ''}</span>
-        <button data-remove="${a.id}">Remove</button>
-      </div>`).join('');
-    roster.querySelectorAll('button[data-remove]').forEach(btn=>{
-      btn.addEventListener('click', () => removeArtist(btn.dataset.remove));
-    });
   }
 
   async function castVote(id){
@@ -393,30 +347,6 @@ button.vote:focus-visible{ outline:2px solid var(--paper); outline-offset:2px; }
     votes[id] = (votes[id] || 0) + 1;
     await setVotes(votes);
     await markVoted(id);
-    render();
-  }
-
-  document.getElementById('addArtist').addEventListener('click', async () => {
-    const nameInput = document.getElementById('aName');
-    const styleInput = document.getElementById('aStyle');
-    const name = nameInput.value.trim();
-    if(!name){ setStatus('Enter a name first.'); return; }
-    const artists = await getArtists();
-    artists.push({ id: uid(), name, style: styleInput.value.trim() });
-    await setArtists(artists);
-    nameInput.value = ''; styleInput.value = '';
-    setStatus('Artist added.');
-    render();
-  });
-
-  async function removeArtist(id){
-    let artists = await getArtists();
-    artists = artists.filter(a => a.id !== id);
-    await setArtists(artists);
-    const votes = await getVotes();
-    delete votes[id];
-    await setVotes(votes);
-    setStatus('Artist removed.');
     render();
   }
 
